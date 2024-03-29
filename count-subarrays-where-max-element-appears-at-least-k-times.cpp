@@ -1,5 +1,5 @@
 class Solution {
-public:
+public://SLIDING WINDOW TEMPLATE
     long long countSubarrays(vector<int>& nums, int k) {
         int max=*max_element(nums.begin(),nums.end());// max number in vector using stl
         int i=0,j=0;
