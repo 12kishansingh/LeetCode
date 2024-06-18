@@ -1,1 +1,1 @@
-Solutions of LeetCode famous questions.
+Solutions of LeetCode questions.
