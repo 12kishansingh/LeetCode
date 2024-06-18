@@ -1,55 +1,31 @@
-//DFS 
-
+//Recursoion+Memoization -top down approach
 class Solution {
 public:
-int m,n,length;
-void dfs(vector<vector<int>>& grid,int i,int j){
-    if(i<0 || i>=m|| j<0 || j>=n|| grid[i][j]==0){
-        length++;
-        return;
+typedef long long ll;
+ll n;
+ll dp[100001][2];
+ll solve(int i,vector<int>&nums,bool flag){
+    if(i>=n){
+        return 0;
     }
-    if(grid[i][j]==-1){
-        return;
+    if(dp[i][flag]!=-1){
+        return dp[i][flag];
     }
-    grid[i][j]=-1;
-    dfs(grid,i+1,j);
-    dfs(grid,i-1,j);
-    dfs(grid,i,j+1);
-    dfs(grid,i,j-1);
-
+    ll skip=solve(i+1,nums,flag);
+    ll val=nums[i];
+    if(flag==false){
+        val=-val;
+    }
+ ll take=solve(i+1,nums,!flag)+val;
+    return dp[i][flag]=max(take,skip);
 }
-    int islandPerimeter(vector<vector<int>>& grid) {
-        m=grid.size();
-        n=grid[0].size();length=0;
 
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                if(grid[i][j]==1){
-                    dfs(grid,i,j);
-                    return length;
-                }
-            }
-        }
-        return -1;
-    }
-};
-// intuitive approach,just checking if it i+1,j,{i,j+1),.... is out of bound or zero and increase the count
-class Solution {
-public:
-    int islandPerimeter(vector<vector<int>>& a) {
-        int cnt=0;
-        int n=a.size();
-        int m=a[0].size();
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(a[i][j]==1){
-                    if(j+1>=m || a[i][j+1]==0)cnt++;
-                    if(i-1<0 || a[i-1][j]==0)cnt++;
-                    if(i+1>=n || a[i+1][j]==0)cnt++;
-                    if(j-1<0 || a[i][j-1]==0)cnt++;
-                }
-            }
-        }
-        return cnt;
+
+
+
+    long long maxAlternatingSum(vector<int>& nums) {
+        n=nums.size();
+        memset(dp,-1,sizeof(dp));
+        return solve(0,nums,true);
     }
 };
