@@ -1,4 +1,3 @@
-
 class Solution {
     // Recursive function to calculate the maximum path sum
     int maxPathSumUtil(Node *root, int &res) {
