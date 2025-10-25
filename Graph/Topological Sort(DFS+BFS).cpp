@@ -30,6 +30,38 @@ class Solution {
     }
 };
 
+//dfs
+class Solution {
+public:
+deque<int>dq;
+void dfs(int node, vector<int>&visited,vector<vector<int>>&adj){
+    visited[node]=1;
+    for(int x:adj[node]){
+        if(!visited[x]){
+            dfs(x,visited,adj);
+        }
+    }
+    dq.push_front(node);
+}
+    vector<int> topoSort(int V, vector<vector<int>>& edges) {
+       vector<vector<int>>adj(V);
+       for(auto x:edges){
+           adj[x[0]].push_back(x[1]);
+           
+       }
+       vector<int>visited(V);
+       for(int i=0;i<V;i++){
+           if(!visited[i]){
+               dfs(i,visited,adj);
+           }
+       }
+       vector<int>ans;
+       for(int x:dq){
+           ans.push_back(x);
+       }
+       return ans;
+    }
+};
 
 // using bfs--khans algo
 class Solution {
