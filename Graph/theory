@@ -7,3 +7,5 @@ cyclic graph--graph containing a cycle
 euler graph--degree of each node is even 
 
 hamiltonian graph--a graph with cycle by traversing each node only one time 
+
+how to find the shortest path in unweighted graph(directed/undirected)-- by BFS
